@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "338978712555",
+    "project_id": "yogaloginsystem",
+    "storage_bucket": "yogaloginsystem.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338978712555:android:b9e3b772ded2a317cbc7ae",
+        "android_client_info": {
+          "package_name": "com.SRKuhin.flutter_yoga"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlOC_L2cfGLy1exgPKf5n18cGUM1yGSTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
