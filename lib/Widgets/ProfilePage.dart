@@ -320,7 +320,7 @@ class ProfilePage extends StatelessWidget {
                       }
 
                       int? streak = snapshot.data;
-                      if (streak != null && streak > 0) {
+                      if (streak != null && streak == 0) {
                         return Column(
                           children: [
                             _buildActivityCard(
@@ -329,12 +329,26 @@ class ProfilePage extends StatelessWidget {
                               duration: "15 mins",
                               times: "3 times",
                             ),
+
+                          ],
+                        );
+                      }
+                      else if(streak != null && streak == 1){
+                        return Column(
+                          children: [
                             _buildActivityCard(
                               title: "Yoga Stretch",
                               date: "2024-11-11",
                               duration: "10 mins",
                               times: "5 times",
                             ),
+                          ],
+                        );
+
+                      }
+                      else if(streak != null && streak == 2){
+                        return Column(
+                          children: [
                             _buildActivityCard(
                               title: "Breathing Exercise",
                               date: "2024-11-12",
@@ -343,7 +357,9 @@ class ProfilePage extends StatelessWidget {
                             ),
                           ],
                         );
-                      } else {
+
+                      }
+                      else {
                         return Text(
                           "No activities yet",
                           style: TextStyle(color: Colors.white, fontSize: screenHeight * 0.02),
@@ -371,7 +387,7 @@ class ProfilePage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
                           horizontal: screenWidth * 0.15, vertical: screenHeight * 0.015),
-                      primary: Colors.blueAccent,
+                      backgroundColor: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
                       ),

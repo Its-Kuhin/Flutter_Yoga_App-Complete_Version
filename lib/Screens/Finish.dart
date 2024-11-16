@@ -258,6 +258,7 @@ class Finish extends StatelessWidget {
               icon: Icon(Icons.home, color: Colors.white),
               onPressed: () {
                 // Navigate to the Home Page when the home button is pressed
+
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Home()), // HomePage is your main home page
@@ -445,45 +446,49 @@ class Finish extends StatelessWidget {
 
 class UpdateFitnessModel with ChangeNotifier {
   UpdateFitnessModel() {
-    print("IT WORKS");
-    SetWorkoutTime();
-    LastWorkOutDoneOn();
-    SetMyKCAL(13);
+    print("UpdateFitnessModel initialized.");
+    setWorkoutTime();
+    lastWorkOutDoneOn();
+    setMyKCAL(13);
   }
 
-  int a = 1;
-
-  void SetWorkoutTime() async {
-    print("SetWorkoutTime");
-    String? StartTime = await LocalDB.getStartTime();
-    DateTime tempDate =
-    new DateFormat("yyyy-MM-dd hh:mm:ss").parse(StartTime ?? "2022-05-24 19:31:15.182");
+  Future<void> setWorkoutTime() async {
+    print("Setting workout time...");
+    String? startTime = await LocalDB.getStartTime();
+    DateTime tempDate = DateFormat("yyyy-MM-dd hh:mm:ss").parse(startTime ?? "2022-05-24 19:31:15.182");
     int difference = DateTime.now().difference(tempDate).inMinutes;
-    int? mywotime = await LocalDB.getWorkOutTime();
-    print(mywotime);
-    LocalDB.setWorkOutTime(mywotime! + difference);
+    int? workoutTime = await LocalDB.getWorkOutTime();
+    await LocalDB.setWorkOutTime((workoutTime ?? 0) + difference);
   }
 
-  void LastWorkOutDoneOn() async {
-    print("LAST WORKOUT DONE");
-    DateTime tempDate =
-    new DateFormat("yyyy-MM-dd hh:mm:ss").parse(await LocalDB.getLastDoneOn() ?? "2022-05-24 19:31:15.182");
-    int difference = DateTime.now().difference(tempDate).inDays;
-    if (difference == 0) {
-      print("GOOD JOB");
-    } else {
-      int? streaknow = await LocalDB.getStreak();
-      LocalDB.setStreak(streaknow! + 1);
+  Future<void> lastWorkOutDoneOn() async {
+    try {
+      print("Checking last workout date...");
+      String? lastDoneOn = await LocalDB.getLastDoneOn();
+      DateTime tempDate = lastDoneOn != null
+          ? DateFormat("yyyy-MM-dd hh:mm:ss").parse(lastDoneOn)
+          : DateTime.now();
+
+      int difference = DateTime.now().difference(tempDate).inDays;
+
+      if (difference == 0) {
+        print("Good job! You worked out today.");
+      } else {
+        int currentStreak = (await LocalDB.getStreak()) ?? 0;
+        await LocalDB.setStreak(currentStreak + 1);
+        print("Streak updated to ${currentStreak + 1}");
+      }
+
+      await LocalDB.setLastDoneOn(DateTime.now().toString());
+    } catch (e) {
+      print("Error in updating last workout date: $e");
     }
-    await LocalDB.setLastDoneOn(DateTime.now().toString());
   }
 
-  void SetMyKCAL(int myKCAL) async {
-    print("SetMyKCAL");
+  Future<void> setMyKCAL(int myKCAL) async {
+    print("Updating KCAL...");
     int? kcal = await LocalDB.getKcal();
-    print(kcal);
-    LocalDB.setkcal(kcal.toString() == "null" ? 0 : kcal! + myKCAL);
+    await LocalDB.setkcal((kcal ?? 0) + myKCAL);
   }
 }
-
 

@@ -122,7 +122,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                         Column(
                                           children: [
                                             Text(
-                                              kcal.toString() == "null" ? "0" : kcal.toString() ,
+                                              kcal.toString() == "null" ? "0" : kcal.toString()
+                                           ,
                                               style: const TextStyle(
                                                   color: Color(0xFF270B19),
                                                   fontSize: 23),
