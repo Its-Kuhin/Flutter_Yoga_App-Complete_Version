@@ -6,6 +6,7 @@ import '../model/model.dart';
 import '../services/localdb.dart';
 import 'package:flutter_yoga/services/yogadb.dart';
 
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
   @override
@@ -76,345 +77,360 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return isLoading
         ? const Scaffold(body: Center())
-        : Scaffold(
-            key: scaffoldKey,
-            drawer: const CustomDrawer(),
-            backgroundColor: Color(0xFF270B19),
-            body: NotificationListener(
-              onNotification: scrollListner,
-              child: Stack(
-                children: [
-                  Container(
-                    height: double.infinity,
-                    child: Stack(
-                      children: [
-                        SingleChildScrollView(
-                          child: Stack(
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(50, 100, 50, 40),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.blueAccent,
-                                        borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(13),
-                                            bottomLeft: Radius.circular(13))),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Text(
-                                              streak.toString() == "null" ? "0" : streak.toString(),
-                                              style: const TextStyle(
-                                                  color: Color(0xFF270B19),
-                                                  fontSize: 23),
-                                            ),
-                                            const Text("Streak",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 13))
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              kcal.toString() == "null" ? "0" : kcal.toString()
-                                           ,
-                                              style: const TextStyle(
-                                                  color: Color(0xFF270B19),
-                                                  fontSize: 23),
-                                            ),
-                                            const Text("Cal",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 13))
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              womin.toString() == "null" ? "0" : womin.toString(),
-                                              style: const TextStyle(
-                                                  color: Color(0xFF270B19),
-                                                  fontSize: 23),
-                                            ),
-                                            const Text("Minutes",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 13))
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.all(20),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                            padding:
-                                                const EdgeInsets.only(bottom: 15),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: const Text(
-                                              "Yoga For All (Age 7-60)",
-                                              style: const TextStyle(color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            )),
+        : Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blueAccent, Colors.lightBlueAccent],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+          child: Scaffold(
+              key: scaffoldKey,
+              drawer:  CustomDrawer(),
+              body: NotificationListener(
+                onNotification: scrollListner,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: double.infinity,
+                      child: Stack(
+                        children: [
+                          SingleChildScrollView(
+                            child: Stack(
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(50, 100, 50, 40),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.blueAccent,
+                                          borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13))),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Text(
+                                                //streak.toString() == "null" ? "0" : streak.toString()
+                                                '1'
+                                                ,
+                                                style: const TextStyle(
+                                                    color: Color(0xFF270B19),
+                                                    fontSize: 23),
+                                              ),
+                                              const Text("Streak",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13))
+                                            ],
+                                          ),
 
-                                        ListView.builder(
-                                          shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(), // Disable internal scrolling
-                                          itemCount: yogasumlst.length,
-                                          itemBuilder: (context, index) {
-                                            return InkWell(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => Startup(
-                                                      yogaSum: yogasumlst[index],
-                                                      Yogakey: yogasumlst[index].yogakey.toString(),
+                                          Column(
+                                            children: [
+                                              Text(
+                                                //kcal.toString() == "null" ? "0" : kcal.toString()
+                                            '12'
+                                             ,
+                                                style: const TextStyle(
+                                                    color: Color(0xFF270B19),
+                                                    fontSize: 23),
+                                              ),
+                                              const Text("Cal",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13))
+                                            ],
+                                          ),
+                                          Column(
+                                            children: [
+                                              Text(
+                                                //womin.toString() == "null" ? "0" : womin.toString()
+                                                '6'
+                                                ,
+
+                                                style: const TextStyle(
+                                                    color: Color(0xFF270B19),
+                                                    fontSize: 23),
+                                              ),
+                                              const Text("Minutes",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13))
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.all(20),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              padding:
+                                                  const EdgeInsets.only(bottom: 15),
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: const Text(
+                                                "Yoga For All (Age 7-60)",
+                                                style: const TextStyle(color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold),
+                                              )),
+
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            physics: NeverScrollableScrollPhysics(), // Disable internal scrolling
+                                            itemCount: yogasumlst.length,
+                                            itemBuilder: (context, index) {
+                                              return InkWell(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => Startup(
+                                                        yogaSum: yogasumlst[index],
+                                                        Yogakey: yogasumlst[index].yogakey.toString(),
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                              child: Container(
-                                                margin: const EdgeInsets.only(bottom: 20),
-                                                child: Stack(
-                                                  children: [
-                                                    Container(
-                                                      height: 150,
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: AssetImage(
-                                                            yogasumlst[index].BackImg.toString(),
+                                                  );
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(bottom: 20),
+                                                  child: Stack(
+                                                    children: [
+                                                      Container(
+                                                        height: 150,
+                                                        decoration: BoxDecoration(
+                                                          image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: AssetImage(
+                                                              yogasumlst[index].BackImg.toString(),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Container(
-                                                      height: 150,
-                                                      color: Colors.black26,
-                                                    ),
-                                                    Positioned(
-                                                      right: 20,
-                                                      left: 10,
-                                                      top: 10,
-                                                      child: Text(
-                                                        yogasumlst[index].YogaWorkOutName,
-                                                        style: const TextStyle(
+                                                      Container(
+                                                        height: 150,
+                                                        color: Colors.black26,
+                                                      ),
+                                                      Positioned(
+                                                        right: 20,
+                                                        left: 10,
+                                                        top: 10,
+                                                        child: Text(
+                                                          yogasumlst[index].YogaWorkOutName,
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Positioned(
+                                                        right: 30,
+                                                        left: 12,
+                                                        top: 38,
+                                                        child: Text(
+                                                          "${yogasumlst[index].TimeTaken} Minutes || ${yogasumlst[index].TotalNoOfWork} Workouts",
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 10,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          InkWell(
+                                            onTap: (){
+
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(bottom: 20),
+                                              child: Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 150,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                "https://manage.ayurbethaniya.org/uploads/media/Ardha%20Chandrasana%20(1)66dee2651c804.jpg"))),
+                                                  ),
+                                                  Container(
+                                                    height: 150,
+                                                    color: Colors.black26,
+                                                  ),
+                                                  Positioned(
+                                                    right: 20,
+                                                    left: 10,
+                                                    top: 10,
+                                                    child: Text(
+                                                      "Yoga For Begineers",
+                                                      style: TextStyle(
                                                           color: Colors.white,
                                                           fontWeight: FontWeight.bold,
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
+                                                          fontSize: 18),
                                                     ),
-                                                    Positioned(
-                                                      right: 30,
-                                                      left: 12,
-                                                      top: 38,
-                                                      child: Text(
-                                                        "${yogasumlst[index].TimeTaken} Minutes || ${yogasumlst[index].TotalNoOfWork} Workouts",
-                                                        style: const TextStyle(
+                                                  ),
+                                                  Positioned(
+                                                    right: 30,
+                                                    left: 12,
+                                                    top: 38,
+                                                    child: Text(
+                                                      "Last Time : 2 Feb",
+                                                      style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 10,
-                                                        ),
-                                                      ),
+                                                          fontSize: 10),
                                                     ),
-                                                  ],
-                                                ),
+                                                  )
+                                                ],
                                               ),
-                                            );
-                                          },
-                                        ),
-                                        InkWell(
-                                          onTap: (){
-
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.only(bottom: 20),
-                                            child: Stack(
-                                              children: [
-                                                Container(
-                                                  height: 150,
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(
-                                                              "https://manage.ayurbethaniya.org/uploads/media/Ardha%20Chandrasana%20(1)66dee2651c804.jpg"))),
-                                                ),
-                                                Container(
-                                                  height: 150,
-                                                  color: Colors.black26,
-                                                ),
-                                                Positioned(
-                                                  right: 20,
-                                                  left: 10,
-                                                  top: 10,
-                                                  child: Text(
-                                                    "Yoga For Begineers",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 18),
-                                                  ),
-                                                ),
-                                                Positioned(
-                                                  right: 30,
-                                                  left: 12,
-                                                  top: 38,
-                                                  child: Text(
-                                                    "Last Time : 2 Feb",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 10),
-                                                  ),
-                                                )
-                                              ],
                                             ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          onTap: (){
+                                          InkWell(
+                                            onTap: (){
 
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.only(bottom: 20),
-                                            child: Stack(
-                                              children: [
-                                                Container(
-                                                  height: 150,
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(
-                                                              "https://images.unsplash.com/photo-1557512724-931547195611?q=80&w=1478&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"))),
-                                                ),
-                                                Container(
-                                                  height: 150,
-                                                  color: Colors.black26,
-                                                ),
-                                                Positioned(
-                                                  right: 20,
-                                                  left: 10,
-                                                  top: 10,
-                                                  child: Text(
-                                                    "Standing Forward Bend",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 18),
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(bottom: 20),
+                                              child: Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 150,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                "https://images.unsplash.com/photo-1557512724-931547195611?q=80&w=1478&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"))),
                                                   ),
-                                                ),
-                                                Positioned(
-                                                  right: 30,
-                                                  left: 12,
-                                                  top: 38,
-                                                  child: Text(
-                                                    "Last Time : 2 Feb",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 10),
+                                                  Container(
+                                                    height: 150,
+                                                    color: Colors.black26,
                                                   ),
-                                                )
-                                              ],
+                                                  Positioned(
+                                                    right: 20,
+                                                    left: 10,
+                                                    top: 10,
+                                                    child: Text(
+                                                      "Standing Forward Bend",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    right: 30,
+                                                    left: 12,
+                                                    top: 38,
+                                                    child: Text(
+                                                      "Last Time : 2 Feb",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 10),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          onTap: (){
+                                          InkWell(
+                                            onTap: (){
 
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.only(bottom: 20),
-                                            child: Stack(
-                                              children: [
-                                                Container(
-                                                  height: 150,
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(
-                                                              "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80"))),
-                                                ),
-                                                Container(
-                                                  height: 150,
-                                                  color: Colors.black26,
-                                                ),
-                                                Positioned(
-                                                  right: 20,
-                                                  left: 10,
-                                                  top: 10,
-                                                  child: Text(
-                                                    "Triangle pose",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 18),
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(bottom: 20),
+                                              child: Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 150,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80"))),
                                                   ),
-                                                ),
-                                                Positioned(
-                                                  right: 30,
-                                                  left: 12,
-                                                  top: 38,
-                                                  child: Text(
-                                                    "Last Time : 2 Feb",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 10),
+                                                  Container(
+                                                    height: 150,
+                                                    color: Colors.black26,
                                                   ),
-                                                )
-                                              ],
+                                                  Positioned(
+                                                    right: 20,
+                                                    left: 10,
+                                                    top: 10,
+                                                    child: Text(
+                                                      "Triangle pose",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    right: 30,
+                                                    left: 12,
+                                                    top: 38,
+                                                    child: Text(
+                                                      "Last Time : 2 Feb",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 10),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                            width: MediaQuery.of(context).size.width,
-                                            padding: const EdgeInsets.symmetric(vertical: 20),
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10) , color: Colors.blue),
+                                          Container(
+                                              width: MediaQuery.of(context).size.width,
+                                              padding: const EdgeInsets.symmetric(vertical: 20),
+                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10) , color: Colors.blue),
 
-                                            child: Column(
+                                              child: Column(
 
-                                              children: [
-                                                const Text("Next Yoga Workout Pack Update On" , style: const TextStyle(fontWeight: FontWeight.w300 , fontSize: 15 ,color: Colors.white),),
-                                                const Text("10" , style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: Colors.white),),
-                                                const Text("App Installs" , style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w300,color: Colors.white),)
-                                              ],
-                                            )
-                                        )
-                                      ],
+                                                children: [
+                                                  const Text("Next Yoga Workout Pack Update On" , style: const TextStyle(fontWeight: FontWeight.w300 , fontSize: 15 ,color: Colors.white),),
+                                                  const Text("10" , style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: Colors.white),),
+                                                  const Text("App Installs" , style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w300,color: Colors.white),)
+                                                ],
+                                              )
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              )
-                            ],
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        CustomAppBar(
-                            animationController: _animationController,
-                            colorsTween: _colorTween,
-                            drawerTween: _drawerTween,
-                            homeTween: _homeTween,
-                            iconTween: _iconTween,
-                            onPressed: () {
-                              scaffoldKey.currentState?.openDrawer();
-                            },
-                            yogaTween: _yogaTween)
-                      ],
-                    ),
-                  )
-                ],
+                          CustomAppBar(
+                              animationController: _animationController,
+                              colorsTween: _colorTween,
+                              drawerTween: _drawerTween,
+                              homeTween: _homeTween,
+                              iconTween: _iconTween,
+                              onPressed: () {
+                                scaffoldKey.currentState?.openDrawer();
+                              },
+                              yogaTween: _yogaTween)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          );
+        );
   }
 }
 

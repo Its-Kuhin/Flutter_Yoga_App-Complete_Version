@@ -14,24 +14,56 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _confirmPasswordController = TextEditingController();
 
   bool _isSigningUp = false;
+  String _errorMessage = '';
 
   Future<void> _signUpWithEmail() async {
     if (_passwordController.text != _confirmPasswordController.text) {
-      Fluttertoast.showToast(msg: 'Passwords do not match');
+      setState(() {
+        _errorMessage = 'Passwords do not match';
+      });
       return;
     }
+
     try {
-      setState(() => _isSigningUp = true);
+      setState(() {
+        _isSigningUp = true;
+        _errorMessage = ''; // Reset any previous error
+      });
+
       final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
+
       Fluttertoast.showToast(msg: 'Account created: ${userCredential.user?.email}');
       Navigator.pop(context); // Navigate back to Login page after sign-up
     } catch (e) {
-      Fluttertoast.showToast(msg: 'Error during sign-up: $e');
+      // Check if the exception is a FirebaseAuthException
+      if (e is FirebaseAuthException) {
+        setState(() {
+          _errorMessage = _getErrorMessage(e);
+        });
+      } else {
+        // Handle other errors
+        setState(() {
+          _errorMessage = 'An unexpected error occurred. Please try again.';
+        });
+      }
     } finally {
       setState(() => _isSigningUp = false);
+    }
+  }
+
+  String _getErrorMessage(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'email-already-in-use':
+        return 'This email is already in use';
+      case 'invalid-email':
+        return 'Invalid email address';
+      case 'weak-password':
+        return 'Password is too weak';
+      default:
+        return 'An error occurred. Please try again';
     }
   }
 
@@ -45,8 +77,8 @@ class _SignUpPageState extends State<SignUpPage> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF270B19),
-                  Color(0xFF270B19)
+                  Color(0xFF2196F3), // Blue
+                  Color(0xFF0D47A1),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -76,7 +108,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     hintText: 'Email',
                     icon: Icons.email,
                   ),
-
                   SizedBox(height: 20),
 
                   // Password Input
@@ -86,7 +117,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     icon: Icons.lock,
                     obscureText: true,
                   ),
-
                   SizedBox(height: 20),
 
                   // Confirm Password Input
@@ -96,7 +126,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     icon: Icons.lock_outline,
                     obscureText: true,
                   ),
-
                   SizedBox(height: 30),
 
                   // Sign Up Button
@@ -104,6 +133,19 @@ class _SignUpPageState extends State<SignUpPage> {
                     text: 'Sign Up',
                     onPressed: _signUpWithEmail,
                   ),
+
+                  // Error Message
+                  if (_errorMessage.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        _errorMessage,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
 
                   // Loading Indicator
                   if (_isSigningUp)
@@ -128,13 +170,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextSpan(
                             text: "Login",
-                            style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -175,7 +216,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return ElevatedButton(
       child: Text(text),
       style: ElevatedButton.styleFrom(
-        primary: Colors.blueAccent,
+        backgroundColor: Colors.blueAccent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),

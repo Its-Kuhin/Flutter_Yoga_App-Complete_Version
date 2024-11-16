@@ -257,11 +257,16 @@ class Finish extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.home, color: Colors.white),
               onPressed: () {
-                // Navigate to the Home Page when the home button is pressed
+
+
 
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()), // HomePage is your main home page
+                  MaterialPageRoute(
+                    builder: (context) => Home(
+
+                    ),
+                  ),
                 );
               },
             ),
@@ -443,6 +448,8 @@ class Finish extends StatelessWidget {
     );
   }
 }
+
+
 
 class UpdateFitnessModel with ChangeNotifier {
   UpdateFitnessModel() {

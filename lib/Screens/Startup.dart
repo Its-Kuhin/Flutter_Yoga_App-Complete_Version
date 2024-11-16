@@ -229,7 +229,7 @@ class _StartupState extends State<Startup> {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: Text('Surya Namaskar'),
+                      title: Text('SuryaNamaskar',style:TextStyle(fontWeight: FontWeight.bold)),
                       actionsAlignment: MainAxisAlignment.center,
                       actionsPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                       actions: [
@@ -245,9 +245,14 @@ class _StartupState extends State<Startup> {
                           Image.network("https://ekamyoga.com/public/uploads/blog/1716359832.jpg"),
                           SizedBox(height: 10),
                           Text(
-                            '\nIntroduction to Surya Namaskar:\n\nSurya Namaskar, also known as Sun Salutation, holds a mystical place in the world of yoga (Ekam Yoga). It is derived from the ancient Vedic tradition and consists of twelve postures that pay homage to the Sun as it provides energy and health to all life on Earth. In this guide, we will see in detail how to do Surya Namaskar and how it affects your overall health.',
+                            '\nIntroduction to Surya Namaskar\n',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '\nSurya Namaskar, also known as Sun Salutation, holds a mystical place in the world of yoga (Ekam Yoga). It is derived from the ancient Vedic tradition and consists of twelve postures that pay homage to the Sun as it provides energy and health to all life on Earth. In this guide, we will see in detail how to do Surya Namaskar and how it affects your overall health.',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,fontFamily: 'RobotoSlab'),
                           ),
                         ],
                       ),

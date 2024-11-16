@@ -3,20 +3,28 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_yoga/Screens/Finish.dart';
 import 'package:flutter_yoga/Screens/SplashScreen.dart';
-import 'Widgets/login_page.dart';
-import 'Screens/Home.dart';  // Import your Home widget
-import 'Widgets/ProfilePage.dart'; // Import ProfilePage
+import 'package:flutter_yoga/Widgets/login_page.dart';
+import 'package:flutter_yoga/Screens/Home.dart';
+import 'package:flutter_yoga/Widgets/ProfilePage.dart';
+import 'package:provider/provider.dart';
+import 'Widgets/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
 }
-
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       title: 'Flutter Yoga App',
       debugShowCheckedModeBanner: false,
@@ -27,15 +35,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfilePage(), // Profile page
         '/home': (context) => Home(),
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: themeProvider.currentTheme,
     );
   }
 }
-
-
-
-
-
